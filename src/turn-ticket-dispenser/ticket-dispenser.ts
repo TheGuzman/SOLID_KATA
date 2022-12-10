@@ -1,15 +1,18 @@
-import TurnNumberSequence from "./turn-number-sequence";
-import TurnTicket from "./turn-ticket";
+import { BaseSequence } from "./turn-number-sequence";
+import TurnTicket, { Ticket } from "./turn-ticket";
 
-export default class TicketDispenser {
-    #sequence: TurnNumberSequence;
-    constructor(private readonly turnSequence: TurnNumberSequence) {
+export default class TicketDispenser implements BaseDispenser {
+    #sequence: BaseSequence;
+    constructor(private readonly turnSequence: BaseSequence) {
         this.#sequence = this.turnSequence;
     }
     public getTurnTicket() {
         const newTurnNumber = this.#sequence.getNextTurnNumber();
         const newTurnTicket = new TurnTicket(newTurnNumber);
-
-        return newTurnTicket;
+        return newTurnTicket.createTicket();
     }
+}
+
+interface BaseDispenser {
+    getTurnTicket(): Ticket;
 }

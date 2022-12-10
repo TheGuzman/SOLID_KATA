@@ -1,11 +1,21 @@
 export default class TurnTicket {
-    private turnNumber: number;
+    #turnNumber: number;
 
     constructor(turnNumber: number) {
-        this.turnNumber = turnNumber;
+        this.#turnNumber = turnNumber;
     }
 
     public getTurnNumber() {
-        return this.turnNumber;
+        return this.#turnNumber;
+    }
+    public createTicket(): Ticket {
+        return { ticketNumber: this.#turnNumber };
     }
 }
+
+export type Ticket = {
+    ticketNumber: number;
+};
+// interface BaseTicket {
+//     getTurnNumber(): number;
+// }
