@@ -1,31 +1,36 @@
-export interface UniqueNextTurnNumber {
-    getNextTurnNumber(): number;
-    getCurrentTurnNumber(): number;
+export interface UniqueTurn<T> {
+    getNextTurn(): T;
+    getCurrentTurn(): T;
 }
 
-export class BaseSequence implements UniqueNextTurnNumber {
-    #turnNumber: number;
-    constructor() {
-        this.#turnNumber = 0;
+export class BaseNumericSequence implements UniqueTurn<number> {
+    #turn: number;
+    constructor(startTurn: number) {
+        this.#turn = startTurn;
     }
-
-    public getNextTurnNumber(): number {
-        return this.#turnNumber++;
+    getCurrentTurn(): number {
+        return this.getCurrentTurnNumber();
     }
-    public getCurrentTurnNumber(): number {
-        return this.#turnNumber;
+    getNextTurn(): number {
+        return this.getNextTurnNumber();
+    }
+    private getNextTurnNumber(): number {
+        return this.#turn++;
+    }
+    private getCurrentTurnNumber(): number {
+        return this.#turn;
     }
 }
 
-export default class TurnNumberSequence extends BaseSequence {
+export default class TurnNumberSequence extends BaseNumericSequence {
     #turnNumber: number;
 
-    constructor() {
-        super();
-        this.#turnNumber = this.getCurrentTurnNumber();
+    constructor(startNumber: number) {
+        super(startNumber);
+        this.#turnNumber = this.getCurrentTurn();
     }
 
-    public getNextTurnNumber(): number {
+    public getNextTurn(): number {
         return this.#turnNumber++;
     }
 }

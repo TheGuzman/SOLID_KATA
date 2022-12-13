@@ -1,4 +1,4 @@
-export default class TurnTicket {
+export default class TurnTicket implements BaseTicket {
     #turnNumber: number;
 
     constructor(turnNumber: number) {
@@ -16,6 +16,7 @@ export default class TurnTicket {
 export type Ticket = {
     ticketNumber: number;
 };
-// interface BaseTicket {
-//     getTurnNumber(): number;
-// }
+export interface BaseTicket {
+    getTurnNumber(): number;
+    createTicket(): Ticket;
+}
