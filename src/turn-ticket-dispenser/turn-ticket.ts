@@ -6,9 +6,6 @@ export default class TurnTicket implements BaseTicket {
     }
 
     public getTurnNumber() {
-        return this.#turnNumber;
-    }
-    public createTicket(): Ticket {
         return { ticketNumber: this.#turnNumber };
     }
 }
@@ -17,6 +14,5 @@ export type Ticket = {
     ticketNumber: number;
 };
 export interface BaseTicket {
-    getTurnNumber(): number;
-    createTicket(): Ticket;
+    getTurnNumber(): Ticket;
 }

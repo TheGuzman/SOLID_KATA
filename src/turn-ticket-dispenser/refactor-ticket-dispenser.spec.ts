@@ -28,7 +28,7 @@ describe("Given multiple ticket Dispensers", () => {
     let turnSequence: TurnNumberSequence;
     let firstDispenser: TicketDispenser;
     let secondDispenser: TicketDispenser;
-    beforeEach(() => {
+    beforeAll(() => {
         turnSequence = new TurnNumberSequence(startSequenceNumber);
         firstDispenser = new TicketDispenser(turnSequence);
         secondDispenser = new TicketDispenser(turnSequence);

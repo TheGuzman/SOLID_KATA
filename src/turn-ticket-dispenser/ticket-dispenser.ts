@@ -9,7 +9,7 @@ export default class TicketDispenser implements BaseDispenser {
     public getTurnTicket() {
         const newTurnNumber = this.#sequence.getNextTurn();
         const newTurnTicket = new TurnTicket(newTurnNumber);
-        return newTurnTicket.createTicket();
+        return newTurnTicket.getTurnNumber();
     }
 }
 
